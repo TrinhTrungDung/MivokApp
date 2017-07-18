@@ -68,8 +68,10 @@ public class WordAdapter extends ArrayAdapter<Word> {
         View textContainer = listItemView.findViewById(R.id.text_container);
         int color = ContextCompat.getColor(getContext(), mColorResourceId);
         textContainer.setBackgroundColor(color);
+
         TextView mivokTextView = (TextView) listItemView.findViewById(R.id.mivok_text_view);
         mivokTextView.setText(currentWord.getmMivokTranslation());
+
         TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
         defaultTextView.setText(currentWord.getmDefaultTranslation());
 

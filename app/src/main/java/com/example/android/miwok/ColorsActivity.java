@@ -15,18 +15,11 @@
  */
 package com.example.android.miwok;
 
-import android.content.Context;
-import android.support.annotation.ColorInt;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
-
-import static java.security.AccessController.getContext;
 
 public class ColorsActivity extends AppCompatActivity {
 
@@ -50,7 +43,7 @@ public class ColorsActivity extends AppCompatActivity {
 
         WordAdapter adapter = new WordAdapter(this, words, R.color.category_colors);
         ListView listView = (ListView) findViewById(R.id.list);
+        
         listView.setAdapter(adapter);
-        //listView.setDrawingCacheBackgroundColor(getResources().getColor(R.color.category_colors));
     }
 }
