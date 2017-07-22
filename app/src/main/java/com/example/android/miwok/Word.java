@@ -13,7 +13,10 @@ public class Word {
     // Mivok translation for word
     private String mMivokTranslation;
 
+    private int mAudioResourceId = NO_AUDIO_PROVIDED;
+
     private static final int NO_IMAGE_PROVIDED = -1;
+    private static final int NO_AUDIO_PROVIDED = -1;
 
 
     public Word(String defaultTranslation, String mivokTranslation) {
@@ -26,6 +29,15 @@ public class Word {
         mDefaultTranslation = defaultTranslation;
         mMivokTranslation = mivokTranslation;
     }
+
+    public Word(String defaultTranslation, String mivokTranslation, int imageResourceId, int audioResourceId) {
+        mImageResourceId = imageResourceId;
+        mDefaultTranslation = defaultTranslation;
+        mMivokTranslation = mivokTranslation;
+        mAudioResourceId = audioResourceId;
+    }
+
+    public int getmAudioResourceId() {return mAudioResourceId;}
 
     public int getImageResourceId() {
         return mImageResourceId;
@@ -44,4 +56,6 @@ public class Word {
     public boolean hasImage() {
         return mImageResourceId != NO_IMAGE_PROVIDED;
     }
+
+    public boolean hasAudio() {return mAudioResourceId != NO_AUDIO_PROVIDED;}
 }

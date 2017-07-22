@@ -3,13 +3,17 @@ package com.example.android.miwok;
 import android.app.Activity;
 import android.content.Context;
 import android.media.Image;
+import android.media.MediaPlayer;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -17,6 +21,7 @@ import java.util.List;
 
 public class WordAdapter extends ArrayAdapter<Word> {
     private int mColorResourceId;
+    private int mAudioResourceId;
     /**
      * This is our own custom constructor (it doesn't mirror a superclass constructor).
      * The context is used to inflate the layout file, and the list is the data we want
@@ -32,6 +37,16 @@ public class WordAdapter extends ArrayAdapter<Word> {
         // going to use this second argument, so it can be any value. Here, we used 0.
         super(context, 0, words);
         mColorResourceId = color;
+    }
+
+    public WordAdapter(Activity context, ArrayList<Word> words, int color, int audio) {
+        // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
+        // the second argument is used when the ArrayAdapter is populating a single TextView.
+        // Because this is a custom adapter for two TextViews, the adapter is not
+        // going to use this second argument, so it can be any value. Here, we used 0.
+        super(context, 0, words);
+        mColorResourceId = color;
+        mAudioResourceId = audio;
     }
 
     /**
@@ -52,7 +67,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
                     R.layout.list_item, parent, false);
         }
 
-        Word currentWord = getItem(position);
+        final Word currentWord = getItem(position);
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.image_view);
 
         if (currentWord.hasImage()) {
@@ -74,6 +89,14 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
         defaultTextView.setText(currentWord.getmDefaultTranslation());
+
+        listItemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), currentWord.getmAudioResourceId());
+                mediaPlayer.start();
+            }
+        });
 
         return listItemView;
     }
