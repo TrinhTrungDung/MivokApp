@@ -39,16 +39,6 @@ public class WordAdapter extends ArrayAdapter<Word> {
         mColorResourceId = color;
     }
 
-    public WordAdapter(Activity context, ArrayList<Word> words, int color, int audio) {
-        // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
-        // the second argument is used when the ArrayAdapter is populating a single TextView.
-        // Because this is a custom adapter for two TextViews, the adapter is not
-        // going to use this second argument, so it can be any value. Here, we used 0.
-        super(context, 0, words);
-        mColorResourceId = color;
-        mAudioResourceId = audio;
-    }
-
     /**
      * Provides a view for an AdapterView (ListView, GridView, etc.)
      *
@@ -89,14 +79,6 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
         defaultTextView.setText(currentWord.getmDefaultTranslation());
-
-        listItemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), currentWord.getmAudioResourceId());
-                mediaPlayer.start();
-            }
-        });
 
         return listItemView;
     }
