@@ -1,27 +1,19 @@
 package com.example.android.miwok;
 
 import android.app.Activity;
-import android.content.Context;
-import android.media.Image;
-import android.media.MediaPlayer;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class WordAdapter extends ArrayAdapter<Word> {
     private int mColorResourceId;
-    private int mAudioResourceId;
     /**
      * This is our own custom constructor (it doesn't mirror a superclass constructor).
      * The context is used to inflate the layout file, and the list is the data we want
@@ -49,7 +41,8 @@ public class WordAdapter extends ArrayAdapter<Word> {
      * @return The View for the position in the AdapterView.
      */
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    @NonNull
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         // Check if the existing view is being reused, otherwise inflate the view
         View listItemView = convertView;
         if(listItemView == null) {
